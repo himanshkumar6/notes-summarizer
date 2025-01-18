@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import bcryptjs from "bcryptjs";
 import crypto from "crypto";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 dotenv.config();
 import { generateTokenAndSetCookie } from "../utils/generateTokenAndSetCookie.js";
@@ -12,6 +13,9 @@ import {
 } from "../mailtrap/emails.js";
 import userModel from "../models/user.model.js";
 import { generateVerificationToken } from "../utils/generateverificationToken.js";
+
+const genAI = new GoogleGenerativeAI("AIzaSyDwid5pzQlmLbuK9so4QcwFpepMa0fkOyk"); // Replace with your actual API key
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 // Signup Controller
 export const signup = async (req, res) => {
@@ -265,6 +269,31 @@ export const checkAuth = async (req, res) => {
       error: true,
       success: false,
       message: error.message,
+    });
+  }
+};
+
+//Summarize Controller
+export const summarizeText = async (req, res) => {
+  const { text } = req.body;
+  if (!text) {
+    return res
+      .status(400)
+      .json({ error: "Text is required for summarization" });
+  }
+  try {
+    const result = await model.generateContent(`${text}`);
+    const summary = result?.response?.text();
+
+    if (summary) {
+      return res.status(200).json({ summary });
+    } else {
+      throw new Error("No summary generated");
+    }
+  } catch (error) {
+    console.error("Error summarizing text:", error);
+    res.status(500).json({
+      error: "Failed to generate summary",
     });
   }
 };

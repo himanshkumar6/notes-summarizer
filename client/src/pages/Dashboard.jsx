@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Logout from "../components/Logout";
 import { useAuthStore } from "../store/authStore";
-import InputField from "../components/InputField";
-
+import NotesSummarizer from "../components/NotesSummarizer";
 const Dashboard = () => {
   const { user } = useAuthStore();
   const [showDetails, setShowDetails] = useState(false);
@@ -56,23 +55,10 @@ const Dashboard = () => {
         <h2 className="relative mb-6 font-bold text-center text-transparent text-md lg:text-3xl bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text">
           Input Data
         </h2>
-        <InputField />
-        <motion.button
-          className="w-full px-4 py-3 mt-5 font-bold text-white transition duration-200 rounded-lg shadow-lg bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900"
-          type="Submit"
-          // onClick={handleLogout}
-          whileHover={{ scale: 1.02 }}
-          whileDrag={{
-            scale: 0.98,
-          }}
-        >
-          Generate
-        </motion.button>
+        <NotesSummarizer />
+
         <hr />
-        <h2 className="relative mb-6 font-bold text-center text-transparent text-md lg:text-3xl bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text">
-          Output Data
-        </h2>
-        <InputField />
+        
       </div>
       <Logout />
       <h2 className="py-5 mx-auto font-bold text-center text-transparent cursor-pointer text-md bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text">

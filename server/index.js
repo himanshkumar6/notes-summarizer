@@ -1,13 +1,16 @@
 import express from "express";
 import authRoutes from "./routes/auth.route.js";
+import summarizeRoute from "./routes/summarize.js";
 import { connectDB } from "./db/connectDB.js";
+import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 
 dotenv.config();
-
 const app = express();
+
+app.use(bodyParser.json());
 const PORT = process.env.PORT || 3000;
 
 // Allowed Origins
@@ -31,6 +34,8 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
+//Routes
+app.use("/api", summarizeRoute);
 
 app.listen(PORT, () => {
   connectDB();
