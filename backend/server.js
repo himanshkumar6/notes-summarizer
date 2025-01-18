@@ -16,8 +16,8 @@ const PORT = process.env.PORT || 3000;
 const corsOptions = {
   origin: (origin, callback) => {
     const allowedOrigins = [
-      "https://notes-summarizer-1ys7.onrender.com", // Add your frontend URL
-      "http://localhost:3000", // Allow localhost during development
+      "https://notes-frontend-ebon.vercel.app/", // Add your frontend URL
+      "http://localhost:5173", // Allow localhost during development
     ];
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
@@ -28,6 +28,7 @@ const corsOptions = {
   methods: ["GET", "POST"], // Allowed HTTP methods
   credentials: true, // Allow cookies or authentication headers
 };
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(cookieParser());
