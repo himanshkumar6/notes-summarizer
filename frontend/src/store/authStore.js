@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import axios from "axios";
 
-const API_URL = "https://notes-summarizer-rklu.onrender.com";
+const API_URL = "https://localhost:3000";
 
 axios.defaults.withCredentials = true;
 
