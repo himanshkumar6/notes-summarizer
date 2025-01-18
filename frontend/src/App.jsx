@@ -4,7 +4,7 @@ import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
 import ForgotPassword from "./pages/ForgotPassword";
 import { useAuthStore } from "./store/authStore";
-import VerifyYourMail from "./pages/verifyYourMail";
+import VerifyYourMail from "./pages/VerifyYourMail";
 import { useEffect } from "react";
 import Dashboard from "./pages/Dashboard";
 import LoadingSpiner from "./components/LoadingSpiner";
