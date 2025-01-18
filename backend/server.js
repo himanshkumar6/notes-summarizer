@@ -14,7 +14,11 @@ app.use(bodyParser.json());
 const PORT = process.env.PORT || 3000;
 
 // Allowed Origins
-const allowedOrigins = ["http://localhost:5173", "http://localhost:5174"];
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "https://notes-summarizer-w4ex.onrender.com",
+];
 
 // Dynamic CORS Configuration
 app.use(
