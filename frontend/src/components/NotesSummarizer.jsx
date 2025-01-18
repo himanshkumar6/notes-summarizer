@@ -12,9 +12,12 @@ const NotesSummarizer = () => {
     setLoading(true);
     setSummary("");
     try {
-      const response = await axios.post("http://localhost:3000/api/summarize", {
-        text: notes,
-      });
+      const response = await axios.post(
+        "https://notes-summarizer-rklu.onrender.com/api/summarize",
+        {
+          text: notes,
+        }
+      );
       setSummary(response.data.summary);
     } catch (error) {
       console.error(
