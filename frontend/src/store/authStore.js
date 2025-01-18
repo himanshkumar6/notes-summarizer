@@ -1,7 +1,10 @@
 import { create } from "zustand";
 import axios from "axios";
+import dotenv from "dotenv";
 
-const API_URL = "http://localhost:3000/api/auth";
+dotenv.config();
+
+const API_URL = process.env.VITE_REACT_APP_BACKEND_BASEURL;
 
 axios.defaults.withCredentials = true;
 
