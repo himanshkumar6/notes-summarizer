@@ -12,7 +12,7 @@ import {
   userWelcomeEmail,
 } from "../mailtrap/emails.js";
 import userModel from "../models/user.model.js";
-import { generateVerificationToken } from "../utils/generateverificationToken.js";
+import { generateVerificationToken } from "../utils/generateVerificationToken.js";
 
 const genAI = new GoogleGenerativeAI("AIzaSyDwid5pzQlmLbuK9so4QcwFpepMa0fkOyk"); // Replace with your actual API key
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
