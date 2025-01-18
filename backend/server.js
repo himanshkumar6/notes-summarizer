@@ -13,26 +13,21 @@ const app = express();
 app.use(bodyParser.json());
 const PORT = process.env.PORT || 3000;
 
-// Allowed Origins
-const allowedOrigins = [
-  "http://localhost:5173",
-  "http://localhost:5174",
-  "https://notes-frontend-ebon.vercel.app",
-];
-
-// Dynamic CORS Configuration
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true); // Allow the request
-      } else {
-        callback(new Error("Not allowed by CORS")); // Block the request
-      }
-    },
-    credentials: true, // Allow credentials like cookies
-  })
-);
+const corsOptions = {
+  origin: (origin, callback) => {
+    const allowedOrigins = [
+      "https://notes-summarizer-1ys7.onrender.com", // Add your frontend URL
+      "http://localhost:3000", // Allow localhost during development
+    ];
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
+  credentials: true, // Allow cookies or authentication headers
+};
 
 app.use(express.json());
 app.use(cookieParser());
