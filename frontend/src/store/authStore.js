@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import axios from "axios";
 
-const API_URL = "https://notes-summarizer-1ys7.onrender.com";
+const API_URL = "http://localhost:3000/api/auth";
 
 axios.defaults.withCredentials = true;
 
