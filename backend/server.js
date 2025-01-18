@@ -17,7 +17,7 @@ const PORT = process.env.PORT || 3000;
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
-  "https://notes-summarizer-w4ex.onrender.com",
+  "https://notes-frontend-ebon.vercel.app",
 ];
 
 // Dynamic CORS Configuration
