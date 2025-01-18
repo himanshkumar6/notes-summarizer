@@ -1,3 +1,4 @@
+import React from "react";
 const Input = ({ icons: Icon, ...props }) => {
   return (
     <div className="relative mb-6">

@@ -282,7 +282,7 @@ export const summarizeText = async (req, res) => {
       .json({ error: "Text is required for summarization" });
   }
   try {
-    const result = await model.generateContent(`${text}`);
+    const result = await model.generateContent(`${text}\n\n`);
     const summary = result?.response?.text();
 
     if (summary) {

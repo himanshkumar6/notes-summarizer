@@ -1,3 +1,4 @@
+import React from "react";
 import { motion } from "framer-motion";
 import Input from "../components/Input.jsx";
 import { Loader, Lock, Mail, User } from "lucide-react";

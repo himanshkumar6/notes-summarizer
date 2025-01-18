@@ -13,7 +13,7 @@ const Dashboard = () => {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ duration: 0.5 }}
-      className="max-w-screen-md p-4 mx-auto mt-10 bg-gray-900 border border-gray-800 shadow-2xl w-[94%] lg:w-full lg:max-w-screen-xl bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-xl"
+      className="max-w-screen-md p-4 mx-auto mt-10 bg-gray-900 border border-gray-800 shadow-2xl w-[94%] lg:w-full lg:max-w-screen-xl bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-xl text-center"
     >
       <div className="flex justify-between">
         <h2 className="relative mb-6 font-bold text-center text-transparent cursor-pointer text-md lg:text-3xl bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text">
@@ -58,7 +58,6 @@ const Dashboard = () => {
         <NotesSummarizer />
 
         <hr />
-        
       </div>
       <Logout />
       <h2 className="py-5 mx-auto font-bold text-center text-transparent cursor-pointer text-md bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text">

@@ -6,29 +6,16 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import dotenv from "dotenv";
+import path from "path";
 
 dotenv.config();
 const app = express();
 
 app.use(bodyParser.json());
 const PORT = process.env.PORT || 3000;
+const __dirname = path.resolve();
 
-const corsOptions = {
-  origin: (origin, callback) => {
-    const allowedOrigins = [
-      "https://notes-frontend-ebon.vercel.app/", // Add your frontend URL
-      "http://localhost:5173", // Allow localhost during development
-    ];
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  methods: ["GET", "POST"], // Allowed HTTP methods
-  credentials: true, // Allow cookies or authentication headers
-};
-app.use(cors(corsOptions));
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 
 app.use(express.json());
 app.use(cookieParser());
@@ -36,6 +23,14 @@ app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 //Routes
 app.use("/api", summarizeRoute);
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "/frontend/dist")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+  });
+}
 
 app.listen(PORT, () => {
   connectDB();

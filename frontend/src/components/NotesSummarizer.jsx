@@ -62,7 +62,7 @@ const NotesSummarizer = () => {
         {summary && (
           <div className="relative mt-6 mb-6 font-bold text-center text-transparent text-md lg:text-3xl bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text">
             Output Data
-            <h2>Summary: {summary}</h2>
+            <h2>Summary:"{summary} "</h2>
           </div>
         )}
       </div>
