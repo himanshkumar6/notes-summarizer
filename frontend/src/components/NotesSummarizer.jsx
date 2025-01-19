@@ -10,7 +10,7 @@ const NotesSummarizer = () => {
   const handleSummarize = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setSummary("");
+    setSummary("Summarizing...");
     try {
       const response = await axios.post(
         "https://notes-summarizer-rklu.onrender.com/api/summarize",
@@ -18,7 +18,8 @@ const NotesSummarizer = () => {
           text: notes,
         }
       );
-      setSummary(response.data.summary);
+      const fullSummary = response.data.summary;
+      revealText(fullSummary); // Start typing effect
     } catch (error) {
       console.error(
         "Error summarizing notes:",
@@ -32,15 +33,30 @@ const NotesSummarizer = () => {
       setLoading(false);
     }
   };
+
+  const revealText = (text) => {
+    setSummary("");
+    let index = 0;
+    const interval = setInterval(() => {
+      if (index < text.length) {
+        setSummary((prev) => prev + text[index - 1]);
+        index++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 25);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="w-full overflow-hidden bg-gray-800 bg-opacity-50 shadow-xl md:max-w-screen-xl  rounded-2xl backdrop:filter backdrop:blur-xl max-w-[22rem] text-center"
+      className="w-full overflow-hidden bg-gray-800 bg-opacity-50 shadow-xl md:max-w-screen-xl rounded-2xl backdrop:filter backdrop:blur-xl max-w-[22rem] text-center"
     >
-      <div className="w-full max-w-screen-xl p-1 mx-auto">
+      <div className="w-full max-w-screen-xl p-4 mx-auto">
         <form onSubmit={handleSummarize}>
+          {/* Input Textarea */}
           <textarea
             className="block w-full pt-2 pl-3 text-white bg-transparent border rounded-md shadow-sm outline-none placeholder-slate-400 focus:outline-none sm:text-md focus:ring-1"
             rows={10}
@@ -49,6 +65,7 @@ const NotesSummarizer = () => {
             placeholder="Enter your notes here..."
             onChange={(e) => setnotes(e.target.value)}
           />
+          {/* Generate Button */}
           <motion.button
             className="w-full px-4 py-3 mt-10 font-bold text-white transition duration-200 rounded-lg shadow-lg bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900 md:max-w-sm"
             type="Submit"
@@ -58,16 +75,19 @@ const NotesSummarizer = () => {
               scale: 0.58,
             }}
           >
-            {loading ? "Summarizing" : "Generate"}
+            {loading ? "Summarizing..." : "Generate"}
           </motion.button>
         </form>
         <hr className="mt-6" />
-        {summary && (
-          <div className="relative mt-6 mb-6 font-bold text-center text-transparent text-md lg:text-3xl bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text">
-            Output Data
-            <h2>Summary:"{summary} "</h2>
-          </div>
-        )}
+        {/* Output Textarea */}
+        <textarea
+          className="block w-full pt-2 pl-3 mt-4 text-white bg-transparent border rounded-md shadow-sm outline-none placeholder-slate-400 focus:outline-none sm:text-md focus:ring-1"
+          rows={10}
+          cols={1000}
+          value={summary}
+          placeholder="Result will appear here..."
+          readOnly
+        />
       </div>
     </motion.div>
   );
