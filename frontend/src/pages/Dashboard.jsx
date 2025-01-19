@@ -61,7 +61,7 @@ const Dashboard = () => {
       </div>
       <Logout />
       <h2 className="py-5 mx-auto font-bold text-center text-transparent cursor-pointer text-md bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text">
-        Version 1.0.0
+        Version 1.1.0
       </h2>
     </motion.div>
   );
