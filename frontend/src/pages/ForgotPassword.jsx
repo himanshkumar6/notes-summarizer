@@ -45,8 +45,9 @@ const ForgotPassword = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            {error && (
+             {error && (
             <p className="mb-2 text-sm font-semibold text-red-500">{error}</p>
+          )}
             <motion.button
               className="w-full px-4 py-3 mt-1 font-bold text-white transition duration-200 rounded-lg shadow-lg bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900"
               type="Submit"
