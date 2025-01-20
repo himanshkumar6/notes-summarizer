@@ -168,6 +168,13 @@ export const logout = async (req, res) => {
 export const forgotPassword = async (req, res) => {
   const { email } = req.body;
   try {
+    if (!email) {
+      return res.status(400).json({
+        error: true,
+        success: false,
+        message: "All fields are required!",
+      });
+    }
     const user = await userModel.findOne({ email });
     if (!user) {
       return res.status(400).json({
