@@ -196,7 +196,7 @@ export const forgotPassword = async (req, res) => {
 
     await sendPasswordResetEmail(
       user.email,
-      `https://notes-summarizer-rklu.onrender.com//reset-password/${resetToken}`
+      `https://notes-summarizer-rklu.onrender.com/reset-password/${resetToken}`
     );
     return res.status(200).json({
       success: true,
