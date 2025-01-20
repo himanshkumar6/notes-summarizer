@@ -9,9 +9,9 @@ import { useAuthStore } from "../store/authStore";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
-  const { forgotPassword, isLoading, error } = useAuthStore();
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+   const { forgotPassword, isLoading, error } = useAuthStore();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
